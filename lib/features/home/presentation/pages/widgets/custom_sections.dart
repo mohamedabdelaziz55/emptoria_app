@@ -40,7 +40,7 @@ class CustomSections extends StatelessWidget {
 class Section extends StatelessWidget {
   const Section({super.key, required this.item});
 
-  final SectionModel item;
+  final itemModel item;
 
   @override
   Widget build(BuildContext context) {

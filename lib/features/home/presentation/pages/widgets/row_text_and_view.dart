@@ -5,9 +5,10 @@ import '../../../../../core/styles.dart';
 
 class RowTextandView extends StatelessWidget {
   const RowTextandView({
-    super.key,
+    super.key, required this.text1, required this.text2,
   });
-
+final String text1;
+final String text2;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,9 +18,9 @@ class RowTextandView extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text("RECOMMENDED ", style: Styles.textStyle18bold),
+              Text("$text1 ", style: Styles.textStyle18bold),
               Text(
-                "FOR YOU",
+                text2,
                 style: Styles.textStyle18bold.copyWith(color: kPC),
               ),
             ],

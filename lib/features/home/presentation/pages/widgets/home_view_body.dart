@@ -1,3 +1,4 @@
+import 'package:emptoria_app_team/features/home/data/models/home_model/sections_model.dart';
 import 'package:emptoria_app_team/features/home/presentation/pages/widgets/row_text_and_view.dart';
 import 'package:flutter/material.dart';
 import 'custom_app_bar.dart';
@@ -19,8 +20,13 @@ class HomeViewBody extends StatelessWidget {
               CustomAppBar(),
               PageViewOfferCard(),
               CustomSections(),
-              RowTextandView(),
-              ListViewProductCard()
+              RowTextandView(text1: 'RECOMMENDED', text2: 'FOR YOU',),
+              ListViewProductCard(),
+              RowTextandView(text1: 'Electronics', text2: 'FOR YOU',),
+
+              RowTextandView(text1: 'BEST', text2: 'SELLERS',),
+              ListViewProductCard(),
+
             ],
           ),
         ),
@@ -28,5 +34,18 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
+// class CustomCate extends StatelessWidget {
+//   const CustomCate({super.key, required this.item});
+// final itemModel item;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Image.asset("")
+//       ],
+//     )
+//       ;
+//   }
+// }
 
 
