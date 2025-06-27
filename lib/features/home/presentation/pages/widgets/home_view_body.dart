@@ -1,5 +1,7 @@
+import 'package:emptoria_app_team/core/styles.dart';
 import 'package:flutter/material.dart';
 import 'custom_app_bar.dart';
+import 'custom_sections.dart';
 import 'list_view_offer_card.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -9,8 +11,17 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(children: [CustomAppBar(), PageViewOfferCard()]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(),
+            PageViewOfferCard(),
+            CustomSections(),
+          ],
+        ),
       ),
     );
   }
 }
+
+

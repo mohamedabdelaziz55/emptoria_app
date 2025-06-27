@@ -19,7 +19,7 @@ class _PageViewOfferCardState extends State<PageViewOfferCard> {
     final double h = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      height: h * 0.35 + 20,
+      height: h * 0.32 + 0,
       child: Column(
         children: [
           SizedBox(
