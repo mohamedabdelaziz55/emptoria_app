@@ -13,7 +13,7 @@ class CustomSections extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Sections", style: Styles.textStyle24bold),
+          Text("Sections", style: Styles.textStyle20bold),
           const SizedBox(height: 12),
           SizedBox(
             height: 120,
