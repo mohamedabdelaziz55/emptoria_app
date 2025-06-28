@@ -28,11 +28,11 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final items = [
-      Icon(Icons.home_outlined, size: 30, color: index == 0 ? Colors.white : Colors.black),
-      Icon(Icons.search, size: 30, color: index == 1 ? Colors.white : Colors.black),
-      Icon(Icons.favorite_border, size: 30, color: index == 2 ? Colors.white : Colors.black),
-      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 3 ? Colors.white : Colors.black),
-      Icon(Icons.person, size: 30, color: index == 4 ? Colors.white : Colors.black),
+      Icon(Icons.home_outlined, size: 30, color: index == 0 ? Colors.white : Colors.grey),
+      Icon(Icons.search, size: 30, color: index == 1 ? Colors.white : Colors.grey),
+      Icon(Icons.favorite_border, size: 30, color: index == 2 ? Colors.white : Colors.grey),
+      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 3 ? Colors.white : Colors.grey),
+      Icon(Icons.person, size: 30, color: index == 4 ? Colors.white : Colors.grey),
     ];
 
     return SafeArea(

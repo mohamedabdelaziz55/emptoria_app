@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:emptoria_app_team/routes/app_route.gr.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../core/styles.dart';
@@ -44,15 +46,20 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.asset(item.image, height: 80, width: 80, fit: BoxFit.cover),
-        ),
-        const SizedBox(height: 6),
-        Text(item.title),
-      ],
+    return GestureDetector(
+      onTap: (){
+        context.router.push(const CategoriesRoute());
+      },
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(item.image, height: 80, width: 80, fit: BoxFit.cover),
+          ),
+          const SizedBox(height: 6),
+          Text(item.title),
+        ],
+      ),
     );
   }
 }
