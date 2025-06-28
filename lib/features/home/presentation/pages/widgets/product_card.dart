@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
-
 import '../../../../../core/styles.dart';
+
 
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key});
@@ -32,6 +31,7 @@ class _ProductCardState extends State<ProductCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // صورة المنتج + الخصم + أيقونة المفضلة
           Stack(
             children: [
               ClipRRect(
@@ -81,63 +81,75 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Philips BHH880/10",
-                  style: Styles.textStyle14bold,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Hair Straightening Brush (Black).",
-                  style: Styles.textStyle12.copyWith(color:  Colors.grey[600]),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: const [
-                    Text(
-                      "500 L.E.",
-                      style: Styles.textStyle14bold,
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      "900 L.E.",
-                      style: TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children:  [
-                    Text("4.0 ", style: Styles.textStyle12),
-                    Icon(Icons.star, color: Colors.amber, size: 14),
-                    SizedBox(width: 4),
-                    Text("(1550)",  style: Styles.textStyle12.copyWith(color:  Colors.grey[600]),),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                    ),
-                    onPressed: () {},
-                    child: const Text("Add to cart", style: TextStyle(color: Colors.white),),
+
+          // المحتوى الداخلي القابل للتمدد
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Philips BHH880/10",
+                    style: Styles.textStyle14bold,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    "Hair Straightening Brush (Black).",
+                    style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: const [
+                      Text(
+                        "500 L.E.",
+                        style: Styles.textStyle14bold,
+                      ),
+                      SizedBox(width: 6),
+                      Text(
+                        "900 L.E.",
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text("4.0 ", style: Styles.textStyle12),
+                      const Icon(Icons.star, color: Colors.amber, size: 14),
+                      const SizedBox(width: 4),
+                      Text(
+                        "(1550)",
+                        style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  const Spacer(), // يدفع الزر للأسفل
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Add to cart",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
