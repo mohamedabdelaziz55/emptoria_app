@@ -1,3 +1,4 @@
+import 'package:emptoria_app_team/core/styles.dart';
 import 'package:emptoria_app_team/features/home/data/models/home_model/sections_model.dart';
 import 'package:emptoria_app_team/features/home/presentation/pages/widgets/row_text_and_view.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class HomeViewBody extends StatelessWidget {
               RowTextandView(text1: 'RECOMMENDED', text2: 'FOR YOU',),
               ListViewProductCard(),
               RowTextandView(text1: 'Electronics', text2: 'FOR YOU',),
-
+              GridViewCate(),
               RowTextandView(text1: 'BEST', text2: 'SELLERS',),
               ListViewProductCard(),
 
@@ -34,18 +35,43 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-// class CustomCate extends StatelessWidget {
-//   const CustomCate({super.key, required this.item});
-// final itemModel item;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Image.asset("")
-//       ],
-//     )
-//       ;
-//   }
-// }
+class CustomCate extends StatelessWidget {
+  const CustomCate({super.key, required this.item, });
+final itemModel item;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset(item.image),
+        SizedBox(height: 10,),
+        Text(item.title, style: Styles.textStyle12bold,)
+      ],
+    )
+      ;
+  }
+}
 
+class GridViewCate extends StatelessWidget {
+  const GridViewCate({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+
+      itemCount: cateItem.length,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(40, 40, 40, 10),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 3 / 4,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 0,
+      ),
+      itemBuilder: (context, index) {
+        return CustomCate(item: cateItem[index],);
+      },
+    );
+  }
+}
