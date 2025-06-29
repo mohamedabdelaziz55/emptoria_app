@@ -31,7 +31,6 @@ class _ProductCardState extends State<ProductCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // صورة المنتج + الخصم + أيقونة المفضلة
           Stack(
             children: [
               ClipRRect(
@@ -81,8 +80,6 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ],
           ),
-
-          // المحتوى الداخلي القابل للتمدد
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
@@ -130,7 +127,7 @@ class _ProductCardState extends State<ProductCard> {
                       ),
                     ],
                   ),
-                  const Spacer(), // يدفع الزر للأسفل
+                  const Spacer(),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(

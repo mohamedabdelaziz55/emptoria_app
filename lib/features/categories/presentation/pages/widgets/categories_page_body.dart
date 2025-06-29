@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:emptoria_app_team/core/constants/constants.dart';
 import 'package:emptoria_app_team/features/categories/presentation/pages/widgets/search_bar_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../home/presentation/pages/widgets/product_card.dart';
 import 'custom_cate_appbar.dart';
@@ -14,10 +17,17 @@ class CategoriesPageBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomCateAppBar(title: 'Womans'),
+              CustomCateAppBar(
+                title: 'Womans',
+                icon: CupertinoIcons.back,
+                onPressed: () {
+                  context.router.pop();
+                }, showRow: true,
+                
+              ),
               SearchBarWidget(),
               CustomRowItems(),
-              CustomGridViewCardCate()
+              CustomGridViewCardCate(),
             ],
           ),
         ),
@@ -43,7 +53,7 @@ class CustomGridViewCardCate extends StatelessWidget {
         childAspectRatio: 2.4 / 4,
       ),
       itemBuilder: (context, index) {
-        return const ProductCard();    
+        return const ProductCard();
       },
     );
   }
