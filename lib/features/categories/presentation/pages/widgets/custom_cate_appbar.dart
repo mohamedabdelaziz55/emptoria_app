@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:emptoria_app_team/core/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,17 @@ import '../../../../../core/styles.dart';
 import '../../../../home/presentation/pages/widgets/custom_app_bar.dart';
 
 class CustomCateAppBar extends StatelessWidget {
-  const CustomCateAppBar({super.key, required this.title});
+  const CustomCateAppBar({
+    super.key,
+    required this.title,
+    this.icon,
+    this.onPressed, required this.showRow,
+  });
+final bool showRow;
   final String title;
+  final IconData? icon;
+  final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
     final double h = MediaQuery.of(context).size.height;
@@ -33,18 +43,12 @@ class CustomCateAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: () {
-                context.router.pop();
-              },
-              icon: const Icon(CupertinoIcons.back),
-            ),
+            IconButton(onPressed: onPressed, icon: Icon(icon)),
             Text(title, style: Styles.textStyle24bold),
-            const IconAppBar(image: 'assets/icons/Vector (1).png'),
+           showRow==true? IconAppBar(image: cardImage):Text(''),
           ],
         ),
       ),
-    )
-    ;
+    );
   }
 }

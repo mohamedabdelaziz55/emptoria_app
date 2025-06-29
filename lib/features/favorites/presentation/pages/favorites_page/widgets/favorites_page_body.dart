@@ -9,7 +9,7 @@ class FavoritesPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomCateAppBar(title: 'Favorites'),
+        CustomCateAppBar(title: 'Favorites',showRow: false,),
       ],
     );
   }
