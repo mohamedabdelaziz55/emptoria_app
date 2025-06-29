@@ -7,10 +7,12 @@ class FavoritesPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomCateAppBar(title: 'Favorites',showRow: false,),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CustomCateAppBar(title: 'Favorites',showRow: false,),
+        ],
+      ),
     );
   }
 }
