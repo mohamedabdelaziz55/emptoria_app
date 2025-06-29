@@ -42,7 +42,7 @@ class CustomGridViewCardCate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 10,
+      itemCount: dummyDate.length,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       padding: const EdgeInsets.all(16),
@@ -53,7 +53,7 @@ class CustomGridViewCardCate extends StatelessWidget {
         childAspectRatio: 2.4 / 4,
       ),
       itemBuilder: (context, index) {
-        return const ProductCard();
+        return ProductCard(product: dummyDate[index],);
       },
     );
   }

@@ -2,10 +2,10 @@ class ProductModel {
   final String image;
   final String title;
   final String description;
-  final double price;
-  final double oldPrice;
-  final double rating;
-  final int reviewCount;
+  final String price;
+  final String oldPrice;
+  final String rating;
+  final String reviewCount;
 
   ProductModel({
     required this.image,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/styles.dart';
+import '../../../data/models/productModel/product_model.dart';
 
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key});
-
+  const ProductCard({super.key, required this.product,});
+final ProductModel product;
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -39,7 +40,7 @@ class _ProductCardState extends State<ProductCard> {
                   topRight: Radius.circular(16),
                 ),
                 child: Image.asset(
-                  "assets/images/Mask Group.png",
+                  widget.product.image,
                   height: 120,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -86,27 +87,27 @@ class _ProductCardState extends State<ProductCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Philips BHH880/10",
+                   Text(
+                    widget.product.title,
                     style: Styles.textStyle14bold,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Hair Straightening Brush (Black).",
+                    widget.product.description,
                     style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),
                   Row(
-                    children: const [
+                    children:  [
                       Text(
-                        "500 L.E.",
+                        widget.product.price,
                         style: Styles.textStyle14bold,
                       ),
                       SizedBox(width: 6),
                       Text(
-                        "900 L.E.",
+                        widget.product.oldPrice,
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
@@ -118,11 +119,11 @@ class _ProductCardState extends State<ProductCard> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Text("4.0 ", style: Styles.textStyle12),
+                      Text(widget.product.rating, style: Styles.textStyle12),
                       const Icon(Icons.star, color: Colors.amber, size: 14),
                       const SizedBox(width: 4),
                       Text(
-                        "(1550)",
+                        widget.product.reviewCount,
                         style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
                       ),
                     ],
@@ -154,3 +155,14 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+List<ProductModel>dummyDate=[
+  ProductModel(
+    image: "assets/images/Mask Group.png",
+    title: "Philips BHH880/10",
+    description: "Hair Straightening Brush (Black).",
+    price: "500 L.E.",
+    oldPrice: "900 L.E.",
+    rating: "4.0 ",
+    reviewCount: "(1550)",
+  )
+];
