@@ -1,19 +1,22 @@
+import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../../core/styles.dart';
-
+import '../../../data/models/productModel/product_model.dart';
+import 'custom_button_add_cart.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.product});
+  final ProductModel product;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
 
 class _ProductCardState extends State<ProductCard> {
-  bool isFavorite = false;
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<FavoriteProvider>(context);
     return Container(
       width: 180,
       margin: const EdgeInsets.all(8),
@@ -38,12 +41,14 @@ class _ProductCardState extends State<ProductCard> {
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
                 ),
-                child: Image.asset(
-                  "assets/images/Mask Group.png",
-                  height: 120,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                child:Image(image: NetworkImage(widget.product.image),width: double.infinity,height: 120,fit: BoxFit.cover,)
+
+                // Image.network(
+                //   widget.product.image,
+                //   height: 120,
+                //   width: double.infinity,
+                //   fit: BoxFit.cover,
+                // ),
               ),
               Positioned(
                 top: 8,
@@ -66,13 +71,15 @@ class _ProductCardState extends State<ProductCard> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      isFavorite = !isFavorite;
+                      provider.toggleFavorite(widget.product);
                     });
                   },
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      provider.isExist(widget.product)
+                          ? Icons.favorite
+                          : Icons.favorite_border,
                       color: Colors.red,
                     ),
                   ),
@@ -86,28 +93,28 @@ class _ProductCardState extends State<ProductCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Philips BHH880/10",
+                  Text(
+                    widget.product.title,
                     style: Styles.textStyle14bold,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Hair Straightening Brush (Black).",
+                    widget.product.description,
                     style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),
                   Row(
-                    children: const [
+                    children: [
                       Text(
-                        "500 L.E.",
+                        widget.product.price,
                         style: Styles.textStyle14bold,
                       ),
-                      SizedBox(width: 6),
+                      const SizedBox(width: 6),
                       Text(
-                        "900 L.E.",
-                        style: TextStyle(
+                        widget.product.oldPrice,
+                        style: const TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
                           fontSize: 12,
@@ -118,33 +125,17 @@ class _ProductCardState extends State<ProductCard> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Text("4.0 ", style: Styles.textStyle12),
+                      Text(widget.product.rating, style: Styles.textStyle12),
                       const Icon(Icons.star, color: Colors.amber, size: 14),
                       const SizedBox(width: 4),
                       Text(
-                        "(1550)",
+                        widget.product.reviewCount,
                         style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
                       ),
                     ],
                   ),
                   const Spacer(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "Add to cart",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  CustomButtonAddCart(),
                 ],
               ),
             ),
@@ -154,3 +145,5 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+
+

@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:emptoria_app_team/core/constants/constants.dart';
 import 'package:emptoria_app_team/features/categories/presentation/pages/widgets/search_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../../home/presentation/pages/widgets/product_card.dart';
 import 'custom_cate_appbar.dart';
+import 'custom_grid_view_card_cate.dart';
 import 'custom_row_items.dart';
 
 class CategoriesPageBody extends StatelessWidget {
@@ -36,25 +35,4 @@ class CategoriesPageBody extends StatelessWidget {
   }
 }
 
-class CustomGridViewCardCate extends StatelessWidget {
-  const CustomGridViewCardCate({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: 10,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 2.4 / 4,
-      ),
-      itemBuilder: (context, index) {
-        return const ProductCard();
-      },
-    );
-  }
-}

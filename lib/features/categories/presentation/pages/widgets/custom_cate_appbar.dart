@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/core/constants/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/styles.dart';
 import '../../../../home/presentation/pages/widgets/custom_app_bar.dart';
 
