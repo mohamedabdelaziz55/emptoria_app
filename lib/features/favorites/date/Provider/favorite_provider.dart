@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../home/data/models/productModel/product_model.dart';
 
 class FavoriteProvider extends ChangeNotifier {
-  final List<ProductModel> _fav = [];
+  final List<String> _favorites = [];
 
-  List<ProductModel> get fav => _fav;
+  List<String> get favorites => _favorites;
 
   void toggleFavorite(ProductModel product) {
-    if (_fav.contains(product)) {
-      _fav.remove(product);
+    if (_favorites.contains(product.id)) {
+      _favorites.remove(product.id);
     } else {
-      _fav.add(product);
+      _favorites.add(product.id);
     }
     notifyListeners();
   }
 
   bool isExist(ProductModel product) {
-    final isExist = _fav.contains(product);
-    return isExist;
+    return _favorites.contains(product.id);
   }
 
-  static FavoriteProvider of(context, {bool listen = true}) {
+  static FavoriteProvider of(BuildContext context, {bool listen = true}) {
     return Provider.of<FavoriteProvider>(context, listen: listen);
   }
 }

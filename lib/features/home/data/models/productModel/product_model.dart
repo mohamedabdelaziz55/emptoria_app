@@ -1,4 +1,5 @@
 class ProductModel {
+  final String id; // إضافة معرف فريد
   final String image;
   final String title;
   final String description;
@@ -8,6 +9,7 @@ class ProductModel {
   final String reviewCount;
 
   ProductModel({
+    required this.id,
     required this.image,
     required this.title,
     required this.description,
@@ -22,8 +24,8 @@ class ProductModel {
       identical(this, other) ||
           other is ProductModel &&
               runtimeType == other.runtimeType &&
-              title == other.title;
+              id == other.id;
 
   @override
-  int get hashCode => title.hashCode;
+  int get hashCode => id.hashCode;
 }
