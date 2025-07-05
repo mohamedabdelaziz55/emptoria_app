@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:emptoria_app_team/features/home/data/data/dummy_data.dart';
+import 'package:emptoria_app_team/features/home/data/models/productModel/product_model.dart';
 import 'package:emptoria_app_team/routes/app_route.gr.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../../core/styles.dart';
 import '../../../data/models/home_model/sections_model.dart';
@@ -11,7 +13,7 @@ class CustomSections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +38,6 @@ class CustomSections extends StatelessWidget {
   }
 }
 
-
 //--------------------------
 
 class Section extends StatelessWidget {
@@ -46,15 +47,23 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        context.router.push(const CategoriesRoute());
+    return InkWell(
+      onTap: () {
+        final List<ProductModel> filteredProduct = dummyData
+            .where((element) => element.section.contains(item.title))
+            .toList();
+        context.router.push(CategoriesRoute(filteredProduct: filteredProduct, title: item.title));
       },
       child: Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(item.image, height: 80, width: 80, fit: BoxFit.cover),
+            child: Image.asset(
+              item.image,
+              height: 80,
+              width: 80,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(height: 6),
           Text(item.title),

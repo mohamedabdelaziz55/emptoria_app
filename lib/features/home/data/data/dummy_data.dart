@@ -11,6 +11,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1200 L.E.",
     rating: "4.5",
     reviewCount: "(2300)",
+    section: "Womens",
   ),
   ProductModel(
     id: '2',
@@ -21,6 +22,7 @@ List<ProductModel> dummyData = [
     oldPrice: "2500 L.E.",
     rating: "4.8",
     reviewCount: "(1800)",
+    section: "Beauty",
   ),
   ProductModel(
     id: '3',
@@ -31,6 +33,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1000 L.E.",
     rating: "4.2",
     reviewCount: "(1200)",
+    section: "Fashion",
   ),
   ProductModel(
     id: '4',
@@ -41,6 +44,7 @@ List<ProductModel> dummyData = [
     oldPrice: "700 L.E.",
     rating: "4.0",
     reviewCount: "(900)",
+    section: "Fashion",
   ),
   ProductModel(
     id: '5',
@@ -51,6 +55,7 @@ List<ProductModel> dummyData = [
     oldPrice: "500 L.E.",
     rating: "4.3",
     reviewCount: "(1100)",
+    section: "Mans",
   ),
   ProductModel(
     id: '6',
@@ -61,6 +66,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1300 L.E.",
     rating: "4.6",
     reviewCount: "(1600)",
+    section: "Mans",
   ),
   ProductModel(
     id: '7',
@@ -71,6 +77,7 @@ List<ProductModel> dummyData = [
     oldPrice: "3500 L.E.",
     rating: "4.9",
     reviewCount: "(2000)",
+    section: "Womens",
   ),
   ProductModel(
     id: '8',
@@ -81,6 +88,7 @@ List<ProductModel> dummyData = [
     oldPrice: "2000 L.E.",
     rating: "4.4",
     reviewCount: "(1400)",
+    section: "Kids",
   ),
   ProductModel(
     id: '9',
@@ -91,6 +99,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1500 L.E.",
     rating: "4.7",
     reviewCount: "(1700)",
+    section: "Mans",
   ),
   ProductModel(
     id: '10',
@@ -102,6 +111,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1800 L.E.",
     rating: "4.5",
     reviewCount: "(1300)",
+    section: "Gifts",
   ),
   ProductModel(
     id: '11',
@@ -113,6 +123,7 @@ List<ProductModel> dummyData = [
     oldPrice: "6000 L.E.",
     rating: "4.8",
     reviewCount: "(1900)",
+    section: "Gifts",
   ),
   ProductModel(
     id: '12',
@@ -124,6 +135,7 @@ List<ProductModel> dummyData = [
     oldPrice: "5500 L.E.",
     rating: "4.6",
     reviewCount: "(1500)",
+    section: "MonitorsMonitors",
   ),
   ProductModel(
     id: '13',
@@ -135,6 +147,7 @@ List<ProductModel> dummyData = [
     oldPrice: "7000 L.E.",
     rating: "4.7",
     reviewCount: "(1650)",
+    section: "LapTops",
   ),
   ProductModel(
     id: '14',
@@ -146,6 +159,7 @@ List<ProductModel> dummyData = [
     oldPrice: "2500 L.E.",
     rating: "4.2",
     reviewCount: "(1250)",
+    section: "PCs",
   ),
   ProductModel(
     id: '15',
@@ -157,6 +171,7 @@ List<ProductModel> dummyData = [
     oldPrice: "2000 L.E.",
     rating: "4.3",
     reviewCount: "(1150)",
+    section: "Hard Drives",
   ),
   ProductModel(
     id: '16',
@@ -168,6 +183,7 @@ List<ProductModel> dummyData = [
     oldPrice: "5000 L.E.",
     rating: "4.5",
     reviewCount: "(1350)",
+    section: "Hard Drives",
   ),
   ProductModel(
     id: '17',
@@ -179,6 +195,7 @@ List<ProductModel> dummyData = [
     oldPrice: "6000 L.E.",
     rating: "4.7",
     reviewCount: "(1450)",
+    section: "Hard Drives",
   ),
   ProductModel(
     id: '18',
@@ -190,6 +207,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1500 L.E.",
     rating: "4.1",
     reviewCount: "(1050)",
+    section: "Hard Drives",
   ),
   ProductModel(
     id: '19',
@@ -201,6 +219,7 @@ List<ProductModel> dummyData = [
     oldPrice: "1800 L.E.",
     rating: "4.4",
     reviewCount: "(1100)",
+    section: "Hard Drives",
   ),
   ProductModel(
     id: '20',
@@ -212,5 +231,6 @@ List<ProductModel> dummyData = [
     oldPrice: "1000 L.E.",
     rating: "4.0",
     reviewCount: "(950)",
+    section: "Hard Drives",
   ),
 ];

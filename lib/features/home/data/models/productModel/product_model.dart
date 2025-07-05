@@ -1,5 +1,5 @@
 class ProductModel {
-  final String id; // إضافة معرف فريد
+  final String id;
   final String image;
   final String title;
   final String description;
@@ -7,6 +7,7 @@ class ProductModel {
   final String oldPrice;
   final String rating;
   final String reviewCount;
+  final String section;
 
   ProductModel({
     required this.id,
@@ -17,6 +18,7 @@ class ProductModel {
     required this.oldPrice,
     required this.rating,
     required this.reviewCount,
+    required this.section,
   });
 
   @override

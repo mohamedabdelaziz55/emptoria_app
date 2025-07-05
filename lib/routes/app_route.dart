@@ -11,6 +11,8 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(page: Dashboard.page, path: '/'),
     AutoRoute(page: HomeRoute.page, path: '/home'),
-    AutoRoute(page: CategoriesRoute.page, path: '/categories'),
-  ];
+    AutoRoute(
+      page: CategoriesRoute.page,
+      path: '/categories',
+    ),  ];
 }
