@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../features/home/data/models/productModel/product_model.dart';
+
+import '../../features/home/data/models/productModel/product_model.dart';
 
 class FavoritesHelper {
   static const String _key = 'favorites';
