@@ -1,5 +1,7 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:emptoria_app_team/routes/app_route.dart';
+import 'package:emptoria_app_team/themes/app_theme.dart';
+import 'package:emptoria_app_team/view/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,13 +21,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>FavoriteProvider())
       ],
       child: MaterialApp.router(
-        theme: ThemeData(
-          iconTheme: IconThemeData(
-            color: Colors.grey
-          )
-        ),
+
         routerConfig: _appRouter.config(),
         debugShowCheckedModeBanner: false,
+
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
+
       ),
     );
   }

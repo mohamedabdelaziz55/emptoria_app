@@ -7,7 +7,7 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:FavoritesPageBody() ,
+      body:SafeArea(child: FavoritesPageBody()) ,
     );
   }
 }
