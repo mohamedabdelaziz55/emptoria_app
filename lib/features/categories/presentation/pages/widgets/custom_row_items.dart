@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../../core/styles.dart';
 
 class CustomRowItems extends StatelessWidget {
-  const CustomRowItems({super.key});
-
+  const CustomRowItems({super.key, required this.items});
+final int items;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(22.0),
       child: Row(
         children: [
-          Text("52,082+items", style: Styles.textStyle20bold),
+          Text("$items items", style: Styles.textStyle20bold),
           Spacer(flex: 1,),
           CustomCardRow(text: 'Sort', icon: Icons.swap_vert),
           CustomCardRow(text: 'Filter', icon: Icons.filter_alt_outlined),

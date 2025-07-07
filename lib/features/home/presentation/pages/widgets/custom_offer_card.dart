@@ -47,27 +47,30 @@ class CustomOfferCard extends StatelessWidget {
                 style: Styles.textStyle14.copyWith(color: Colors.white),
               ),
               SizedBox(height: 12,),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  side: const BorderSide(color: Colors.white),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              Expanded(
+                child: TextButton(
+
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(color: Colors.white),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Text(
-                      "Shop Now ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_rounded,
-                      color: Colors.white,
-                    ),
-                  ],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text(
+                        "Shop Now ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_rounded,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                 ),
               ),
 

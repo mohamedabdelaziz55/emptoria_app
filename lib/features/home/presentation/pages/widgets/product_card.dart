@@ -101,7 +101,7 @@ class _ProductCardState extends State<ProductCard> {
                   Text(
                     widget.product.description,
                     style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),

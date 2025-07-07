@@ -107,17 +107,17 @@ class _ViewFavCardState extends State<ViewFavCard> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        item.description,
-                        style: const TextStyle(color: Colors.grey, fontSize: 12),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      // Text(
+                      //   item.description,
+                      //   style: const TextStyle(color: Colors.grey, fontSize: 12),
+                      //   maxLines: 1,
+                      //   overflow: TextOverflow.ellipsis,
+                      // ),
                       const SizedBox(height: 6),
                       Row(
                         children: [
                           Text(
-                            '${item.price} L.E.',
+                            '${item.price}',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                           ),
                           const SizedBox(width: 4),
