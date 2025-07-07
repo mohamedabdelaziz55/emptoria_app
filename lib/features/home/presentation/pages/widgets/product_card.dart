@@ -1,7 +1,7 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../cache/favorites_helper.dart';
+import '../../../../../core/cache/favorites_helper.dart';
 import '../../../../../core/custom_snack_bar.dart';
 import '../../../../../core/styles.dart';
 import '../../../data/models/productModel/product_model.dart';
