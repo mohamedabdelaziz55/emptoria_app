@@ -1,3 +1,4 @@
+import 'package:emptoria_app_team/core/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../home/data/models/productModel/product_model.dart';
@@ -80,7 +81,12 @@ class _ViewFavCardState extends State<ViewFavCard> {
                       right: 10,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
+                          CustomSnackBar.show(
+                            context,
+                            message: "The product has been removed from favorites",
+                            backgroundColor: Colors.redAccent,
+                            icon: Icons.favorite_border,
+                          );                          setState(() {
                             provider.toggleFavorite(item);
                           });
                         },

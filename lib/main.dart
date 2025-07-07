@@ -1,7 +1,8 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
-import 'package:emptoria_app_team/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'core/routes/app_route.dart';
 
 
 void main() {

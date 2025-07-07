@@ -1,3 +1,5 @@
+
+
 class ProductModel {
   final String id;
   final String image;
@@ -20,6 +22,34 @@ class ProductModel {
     required this.reviewCount,
     required this.section,
   });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      image: json['image'],
+      title: json['title'],
+      description: json['description'],
+      price: json['price'],
+      oldPrice: json['oldPrice'],
+      rating: json['rating'],
+      reviewCount: json['reviewCount'],
+      section: json['section'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'image': image,
+      'title': title,
+      'description': description,
+      'price': price,
+      'oldPrice': oldPrice,
+      'rating': rating,
+      'reviewCount': reviewCount,
+      'section': section,
+    };
+  }
 
   @override
   bool operator ==(Object other) =>

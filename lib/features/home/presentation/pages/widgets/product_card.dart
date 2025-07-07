@@ -1,12 +1,15 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../../cache/favorites_helper.dart';
+import '../../../../../core/custom_snack_bar.dart';
 import '../../../../../core/styles.dart';
 import '../../../data/models/productModel/product_model.dart';
 import 'custom_button_add_cart.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key, required this.product});
+
   final ProductModel product;
 
   @override
@@ -24,11 +27,7 @@ class _ProductCardState extends State<ProductCard> {
         borderRadius: BorderRadius.circular(16),
         color: Colors.white,
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 2)),
         ],
       ),
       child: Column(
@@ -41,20 +40,21 @@ class _ProductCardState extends State<ProductCard> {
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
                 ),
-                child:Image(image: NetworkImage(widget.product.image),width: double.infinity,height: 120,fit: BoxFit.cover,)
-
-                // Image.network(
-                //   widget.product.image,
-                //   height: 120,
-                //   width: double.infinity,
-                //   fit: BoxFit.cover,
-                // ),
+                child: Image(
+                  image: NetworkImage(widget.product.image),
+                  width: double.infinity,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned(
                 top: 8,
                 left: 8,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(12),
@@ -68,35 +68,60 @@ class _ProductCardState extends State<ProductCard> {
               Positioned(
                 top: 8,
                 right: 8,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      provider.toggleFavorite(widget.product);
-                    });
+                child: FutureBuilder<bool>(
+                  future: FavoritesHelper.isFavorite(widget.product.id),
+                  builder: (context, snapshot) {
+                    final isFav = snapshot.data ?? false;
+                    return GestureDetector(
+                      onTap: () async {
+                        if (isFav) {
+                          await FavoritesHelper.removeFavorite(
+                            widget.product.id,
+                          );
+                          CustomSnackBar.show(
+                            context,
+                            message: 'Product removed from favorites',
+                            backgroundColor: Colors.redAccent,
+                            icon: Icons.favorite_border,
+                          );
+                        } else {
+                          await FavoritesHelper.saveFavorite(widget.product);
+                          CustomSnackBar.show(
+                            context,
+                            message: 'Product added to favorites',
+                            backgroundColor: Colors.green,
+                            icon: Icons.favorite,
+                          );
+                        }
+
+                        setState(() {
+                          provider.toggleFavorite(widget.product);
+                        });
+                      },
+
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          isFav ? Icons.favorite : Icons.favorite_border,
+                          color: Colors.red,
+                        ),
+                      ),
+                    );
                   },
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      provider.isExist(widget.product)
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Colors.red,
-                    ),
-                  ),
                 ),
               ),
             ],
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 8,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.product.title,
-                    style: Styles.textStyle14bold,
-                  ),
+                  Text(widget.product.title, style: Styles.textStyle14bold),
                   const SizedBox(height: 4),
                   Text(
                     widget.product.description,
@@ -107,10 +132,7 @@ class _ProductCardState extends State<ProductCard> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      Text(
-                        widget.product.price,
-                        style: Styles.textStyle14bold,
-                      ),
+                      Text(widget.product.price, style: Styles.textStyle14bold),
                       const SizedBox(width: 6),
                       Text(
                         widget.product.oldPrice,
@@ -130,7 +152,9 @@ class _ProductCardState extends State<ProductCard> {
                       const SizedBox(width: 4),
                       Text(
                         widget.product.reviewCount,
-                        style: Styles.textStyle12.copyWith(color: Colors.grey[600]),
+                        style: Styles.textStyle12.copyWith(
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),
@@ -145,5 +169,3 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
-
-

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../features/favorites/presentation/pages/favorites_page/favorites_page.dart';
 import '../../../../../features/home/presentation/pages/home_page/home_page.dart';
 import '../../../../../features/home/presentation/pages/widgets/home_view_body.dart';
+import '../../../../../features/search/presentation/pages/search_page/search_page.dart';
 import '../../../../constants/constants.dart';
 
 @RoutePage()
@@ -20,7 +21,7 @@ class _DashboardState extends State<Dashboard> {
 
   final screens = [
     const HomePage(),
-    const ScerchPage(),
+    const SearchPage(),
     const FavoritesPage(),
     const CartPAge(),
     const ProfilePage()

@@ -19,6 +19,9 @@ class _FavoritesPageBodyState extends State<FavoritesPageBody> {
   bool loading = false;
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FavoriteProvider.of(context, listen: false).loadFavoritesFromPrefs();
+    });
     loading=true;
     Timer(Duration(seconds: 3),(){
       setState(() {
