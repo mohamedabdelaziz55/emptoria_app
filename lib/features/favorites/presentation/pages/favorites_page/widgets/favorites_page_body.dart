@@ -18,7 +18,8 @@ class FavoritesPageBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const CustomCateAppBar(title: 'Favorites', showRow: false),
+          const CustomCateAppBar(
+              title: 'Favorites', showRow: false),
           ViewFavCard(finalList: finalList),
         ],
       ),

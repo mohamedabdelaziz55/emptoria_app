@@ -23,7 +23,7 @@ class _PageViewOfferCardState extends State<PageViewOfferCard> {
       child: Column(
         children: [
           SizedBox(
-            height: h * 0.27,
+            height: h * 0.29,
             child: PageView.builder(
               controller: _pageController,
               itemCount: 3,
