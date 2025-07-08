@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/styles.dart';
+import '../../../../../core/utils/styles.dart';
 
 class CustomRowItems extends StatelessWidget {
   const CustomRowItems({super.key, required this.items});

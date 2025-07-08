@@ -4,7 +4,7 @@ import 'package:emptoria_app_team/features/home/data/models/productModel/product
 import 'package:flutter/material.dart';
 
 import '../../../../../core/routes/app_route.gr.dart';
-import '../../../../../core/styles.dart';
+import '../../../../../core/utils/styles.dart';
 import '../../../data/models/home_model/sections_model.dart';
 
 class CustomSections extends StatelessWidget {

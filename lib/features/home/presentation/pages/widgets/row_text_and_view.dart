@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/constants.dart';
-import '../../../../../core/styles.dart';
+import '../../../../../core/utils/styles.dart';
 
 class RowTextandView extends StatelessWidget {
   const RowTextandView({

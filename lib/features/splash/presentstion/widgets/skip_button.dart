@@ -1,7 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:emptoria_app_team/core/routes/app_route.gr.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/utils/app_colors.dart';
-import '../../../auth/presentation/pages/login_screen.dart';
 
 class SkipButton extends StatelessWidget {
   final double width;
@@ -15,10 +15,7 @@ class SkipButton extends StatelessWidget {
       right: width * 0.05,
       child: TextButton(
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => const LoginScreen()),
-          );
+          context.router.push(LoginRoute());
         },
         child: Text(
           "Skip",

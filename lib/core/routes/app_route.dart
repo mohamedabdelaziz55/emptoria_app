@@ -16,8 +16,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ForgotPasswordFlow.page, path: '/forgetPassword'),
     AutoRoute(page: Dashboard.page, path: '/dashboard'),
     AutoRoute(page: HomeRoute.page, path: '/home'),
-    AutoRoute(
-      page: CategoriesRoute.page,
-      path: '/categories',
-    ),  ];
+    AutoRoute(page: CartRoute.page, path: '/cart'),
+    AutoRoute(page: ProfileRoute.page, path: '/profile'),
+    AutoRoute(page: CategoriesRoute.page, path: '/categories'),
+    AutoRoute(page: FavoritesRoute.page, path: '/favorites'),
+  ];
 }

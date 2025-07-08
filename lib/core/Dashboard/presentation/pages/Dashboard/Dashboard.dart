@@ -1,10 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:emptoria_app_team/features/cart/presentation/pages/cart_page.dart';
+import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/favorites_page.dart';
+import 'package:emptoria_app_team/features/home/presentation/pages/home_page/home_page.dart';
+import 'package:emptoria_app_team/features/profile/presentation/pages/profile_page.dart';
+import 'package:emptoria_app_team/features/search/presentation/pages/search_page/search_page.dart';
 import 'package:flutter/material.dart';
-import '../../../../../features/favorites/presentation/pages/favorites_page/favorites_page.dart';
-import '../../../../../features/home/presentation/pages/home_page/home_page.dart';
-import '../../../../../features/home/presentation/pages/widgets/home_view_body.dart';
-import '../../../../../features/search/presentation/pages/search_page/search_page.dart';
 import '../../../../constants/constants.dart';
 
 @RoutePage()
@@ -23,7 +24,7 @@ class _DashboardState extends State<Dashboard> {
     const HomePage(),
     const SearchPage(),
     const FavoritesPage(),
-    const CartPAge(),
+    const CartPage(),
     const ProfilePage()
   ];
 

@@ -1,7 +1,7 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../core/styles.dart';
+import '../../../../../core/utils/styles.dart';
 import '../../../data/models/productModel/product_model.dart';
 import 'custom_button_add_cart.dart';
 

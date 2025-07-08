@@ -1,4 +1,4 @@
-import 'package:emptoria_app_team/core/custom_snack_bar.dart';
+import 'package:emptoria_app_team/core/utils/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../home/data/models/productModel/product_model.dart';

@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../core/assets.dart';
-import '../../../../../core/styles.dart';
+import '../../../../../core/utils/assets.dart';
+import '../../../../../core/utils/styles.dart';
 
 class CustomOfferCard extends StatelessWidget {
   const CustomOfferCard({super.key});

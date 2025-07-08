@@ -54,38 +54,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   }
 }
 
-class ScerchPage extends StatelessWidget {
-  const ScerchPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("ScerchPage"));
-  }
-}
 
-class FavPage extends StatelessWidget {
-  const FavPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("FavPage"));
-  }
-}
 
-class CartPAge extends StatelessWidget {
-  const CartPAge({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("CartPAge"));
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("ProfilePage"));
-  }
-}
