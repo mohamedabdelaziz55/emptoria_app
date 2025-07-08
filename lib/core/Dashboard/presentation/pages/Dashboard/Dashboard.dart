@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:emptoria_app_team/features/cart/presentation/pages/cart_page.dart';
+import 'package:emptoria_app_team/features/cart/presentation/pages/CartPage/cart_page.dart';
 import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/favorites_page.dart';
 import 'package:emptoria_app_team/features/home/presentation/pages/home_page/home_page.dart';
 import 'package:emptoria_app_team/features/profile/presentation/pages/profile_page.dart';

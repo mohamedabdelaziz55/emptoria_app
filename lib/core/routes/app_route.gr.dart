@@ -19,7 +19,7 @@ import 'package:emptoria_app_team/features/auth/presentation/pages/login_screen.
     as _i7;
 import 'package:emptoria_app_team/features/auth/presentation/pages/sign_up_screen.dart'
     as _i11;
-import 'package:emptoria_app_team/features/cart/presentation/pages/cart_page.dart'
+import 'package:emptoria_app_team/features/cart/presentation/pages/CartPage/cart_page.dart'
     as _i1;
 import 'package:emptoria_app_team/features/categories/presentation/pages/categories_page/categories.dart'
     as _i2;

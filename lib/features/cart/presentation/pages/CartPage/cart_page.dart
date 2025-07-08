@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
+import 'package:emptoria_app_team/features/cart/presentation/pages/CartPage/widgets/cart_page_view.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/cart_page_view.dart';
 
 @RoutePage()
 

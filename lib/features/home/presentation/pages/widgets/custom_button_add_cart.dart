@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/custom_snack_bar.dart';
 import '../../../data/models/productModel/product_model.dart';
-
 class CustomButtonAddCart extends StatefulWidget {
   const CustomButtonAddCart({super.key, required this.product});
 
@@ -15,10 +14,18 @@ class CustomButtonAddCart extends StatefulWidget {
 }
 
 class _CustomButtonAddCartState extends State<CustomButtonAddCart> {
+  late bool isInCart;
+
+  @override
+  void initState() {
+    super.initState();
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    isInCart = cartProvider.isExist(widget.product);
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    final isInCart = cartProvider.isExist(widget.product);
 
     return SizedBox(
       height: 40,
@@ -26,18 +33,20 @@ class _CustomButtonAddCartState extends State<CustomButtonAddCart> {
       child: ElevatedButton(
         onPressed: () {
           cartProvider.toggleCart(widget.product);
+          final nowInCart = cartProvider.isExist(widget.product);
 
           CustomSnackBar.show(
             context,
-            message: isInCart
-                ? "Product removed from cart"
-                : "Product added to cart",
-            backgroundColor: isInCart ? Colors.redAccent : Colors.green,
+            message: nowInCart
+                ? "Product added to cart"
+                : "Product removed from cart",
+            backgroundColor: nowInCart ? Colors.green : Colors.redAccent,
             icon: Icons.shopping_cart_outlined,
           );
 
-          // Refresh button appearance
-          setState(() {});
+          setState(() {
+            isInCart = nowInCart;
+          });
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: isInCart ? Colors.green : Colors.blue,

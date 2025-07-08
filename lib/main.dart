@@ -4,13 +4,27 @@ import 'package:provider/provider.dart';
 
 import 'core/routes/app_route.dart';
 import 'features/cart/presentation/data/cart_provider/cart_provider.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp(MyApp());
+  final favoriteProvider = FavoriteProvider();
+  await favoriteProvider.loadFavoritesFromPrefs();
+
+  final cartProvider = CartProvider();
+  await cartProvider.loadCartFromPrefs();
+
+  runApp(
+    MyApp(
+      favoriteProvider: favoriteProvider,
+      cartProvider: cartProvider,
+    ),
+  );
 }
-
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  final FavoriteProvider favoriteProvider;
+  final CartProvider cartProvider;
+
+  MyApp({super.key, required this.favoriteProvider, required this.cartProvider});
 
   final _appRouter = AppRouter();
 
@@ -18,8 +32,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
-        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider.value(value: favoriteProvider),
+        ChangeNotifierProvider.value(value: cartProvider),
       ],
       child: MaterialApp.router(
         theme: ThemeData(iconTheme: IconThemeData(color: Colors.grey)),
@@ -29,3 +43,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
