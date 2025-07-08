@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../categories/presentation/pages/widgets/search_bar_widget.dart';
 import 'custom_app_bar.dart';
 import 'custom_sections.dart';
 import 'grid_view_cate.dart';
@@ -39,6 +40,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           children: const [
             SizedBox(height: 20),
             CustomAppBar(),
+            SearchBarWidget(),
             PageViewOfferCard(),
             CustomSections(),
             RowTextandView(text1: 'RECOMMENDED', text2: 'FOR YOU'),
@@ -53,7 +55,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     );
   }
 }
-
 
 
 

@@ -1,4 +1,5 @@
 import 'package:emptoria_app_team/core/constants/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../home/presentation/pages/widgets/custom_app_bar.dart';
@@ -42,7 +43,7 @@ final bool showRow;
           children: [
             IconButton(onPressed: onPressed, icon: Icon(icon)),
             Text(title, style: Styles.textStyle24bold),
-           showRow==true? IconAppBar(image: cardImage):Text('             '),
+           showRow==true? IconAppBar(icon: Icons.shopping_cart_outlined):Text('             '),
           ],
         ),
       ),

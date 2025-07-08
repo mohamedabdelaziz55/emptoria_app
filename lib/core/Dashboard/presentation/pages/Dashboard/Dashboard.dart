@@ -4,7 +4,6 @@ import 'package:emptoria_app_team/features/cart/presentation/pages/CartPage/cart
 import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/favorites_page.dart';
 import 'package:emptoria_app_team/features/home/presentation/pages/home_page/home_page.dart';
 import 'package:emptoria_app_team/features/profile/presentation/pages/profile_page.dart';
-import 'package:emptoria_app_team/features/search/presentation/pages/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 import '../../../../constants/constants.dart';
 
@@ -22,21 +21,20 @@ class _DashboardState extends State<Dashboard> {
 
   final screens = [
     const HomePage(),
-    const SearchPage(),
     const FavoritesPage(),
     const CartPage(),
-    const ProfilePage()
+    const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     final items = [
       Icon(Icons.home_outlined, size: 30, color: index == 0 ? Colors.white : Colors.grey),
-      Icon(Icons.search, size: 30, color: index == 1 ? Colors.white : Colors.grey),
-      Icon(Icons.favorite_border, size: 30, color: index == 2 ? Colors.white : Colors.grey),
-      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 3 ? Colors.white : Colors.grey),
-      Icon(Icons.person, size: 30, color: index == 4 ? Colors.white : Colors.grey),
+      Icon(Icons.favorite_border, size: 30, color: index == 1 ? Colors.white : Colors.grey),
+      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 2 ? Colors.white : Colors.grey),
+      Icon(Icons.person, size: 30, color: index == 3 ? Colors.white : Colors.grey),
     ];
+
 
     return SafeArea(
       top: false,

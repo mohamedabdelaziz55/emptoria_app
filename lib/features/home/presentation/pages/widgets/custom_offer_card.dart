@@ -46,8 +46,8 @@ class CustomOfferCard extends StatelessWidget {
                 "(product) All colours",
                 style: Styles.textStyle14.copyWith(color: Colors.white),
               ),
-              SizedBox(height: 12,),
-              Expanded(
+              SizedBox(height: 20,),
+              Flexible(
                 child: TextButton(
 
                   onPressed: () {},
