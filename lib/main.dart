@@ -3,28 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/routes/app_route.dart';
-
+import 'features/cart/presentation/data/cart_provider/cart_provider.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  MyApp({super.key});
+
   final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>FavoriteProvider())
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp.router(
-        theme: ThemeData(
-          iconTheme: IconThemeData(
-            color: Colors.grey
-          )
-        ),
+        theme: ThemeData(iconTheme: IconThemeData(color: Colors.grey)),
         routerConfig: _appRouter.config(),
         debugShowCheckedModeBanner: false,
       ),

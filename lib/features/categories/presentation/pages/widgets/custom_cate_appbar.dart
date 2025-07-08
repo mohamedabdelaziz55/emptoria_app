@@ -42,7 +42,7 @@ final bool showRow;
           children: [
             IconButton(onPressed: onPressed, icon: Icon(icon)),
             Text(title, style: Styles.textStyle24bold),
-           showRow==true? IconAppBar(image: cardImage):Text(''),
+           showRow==true? IconAppBar(image: cardImage):Text('             '),
           ],
         ),
       ),

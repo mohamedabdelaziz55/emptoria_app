@@ -5,19 +5,16 @@ import '../../../../../home/data/models/productModel/product_model.dart';
 import '../../../../../home/presentation/pages/widgets/custom_button_add_cart.dart';
 import '../../../../date/Provider/favorite_provider.dart';
 
-class ViewFavCard extends StatefulWidget {
-  const ViewFavCard({
-    super.key,
-    required this.finalList,
-  });
+class ProductCardGrid extends StatefulWidget {
+  const ProductCardGrid({super.key, required this.finalList});
 
   final List<ProductModel> finalList;
 
   @override
-  State<ViewFavCard> createState() => _ViewFavCardState();
+  State<ProductCardGrid> createState() => _ProductCardGridState();
 }
 
-class _ViewFavCardState extends State<ViewFavCard> {
+class _ProductCardGridState extends State<ProductCardGrid> {
   @override
   Widget build(BuildContext context) {
     final provider = FavoriteProvider.of(context);
@@ -53,7 +50,9 @@ class _ViewFavCardState extends State<ViewFavCard> {
                 Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
                       child: Image.network(
                         item.image,
                         height: 120,
@@ -65,14 +64,21 @@ class _ViewFavCardState extends State<ViewFavCard> {
                       top: 8,
                       left: 8,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.lightBlue.shade100,
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: const Text(
                           '50% Off.',
-                          style: TextStyle(color: Colors.blue, fontSize: 10, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -83,17 +89,21 @@ class _ViewFavCardState extends State<ViewFavCard> {
                         onTap: () {
                           CustomSnackBar.show(
                             context,
-                            message: "The product has been removed from favorites",
+                            message:
+                                "The product has been removed from favorites",
                             backgroundColor: Colors.redAccent,
                             icon: Icons.favorite_border,
-                          );                          setState(() {
+                          );
+                          setState(() {
                             provider.toggleFavorite(item);
                           });
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           child: Icon(
-                            provider.isExist(item) ? Icons.favorite : Icons.favorite_border,
+                            provider.isExist(item)
+                                ? Icons.favorite
+                                : Icons.favorite_border,
                             color: Colors.red,
                           ),
                         ),
@@ -108,23 +118,22 @@ class _ViewFavCardState extends State<ViewFavCard> {
                     children: [
                       Text(
                         item.title,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
-                      // Text(
-                      //   item.description,
-                      //   style: const TextStyle(color: Colors.grey, fontSize: 12),
-                      //   maxLines: 1,
-                      //   overflow: TextOverflow.ellipsis,
-                      // ),
                       const SizedBox(height: 6),
                       Row(
                         children: [
                           Text(
-                            '${item.price}',
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                            item.price,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
                           ),
                           const SizedBox(width: 4),
                           Text(
@@ -140,15 +149,28 @@ class _ViewFavCardState extends State<ViewFavCard> {
                       const SizedBox(height: 6),
                       Row(
                         children: [
-                          const Icon(Icons.star, color: Colors.orange, size: 14),
+                          const Icon(
+                            Icons.star,
+                            color: Colors.orange,
+                            size: 14,
+                          ),
                           const SizedBox(width: 3),
-                          Text(item.rating, style: const TextStyle(fontSize: 12)),
+                          Text(
+                            item.rating,
+                            style: const TextStyle(fontSize: 12),
+                          ),
                           const SizedBox(width: 3),
-                          Text('(${item.reviewCount})', style: const TextStyle(fontSize: 10, color: Colors.grey)),
+                          Text(
+                            '(${item.reviewCount})',
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 10),
-                      CustomButtonAddCart(),
+                      CustomButtonAddCart(product: item),
                     ],
                   ),
                 ),

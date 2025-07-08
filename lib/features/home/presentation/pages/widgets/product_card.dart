@@ -42,13 +42,6 @@ class _ProductCardState extends State<ProductCard> {
                   topRight: Radius.circular(16),
                 ),
                 child:Image(image: NetworkImage(widget.product.image),width: double.infinity,height: 120,fit: BoxFit.cover,)
-
-                // Image.network(
-                //   widget.product.image,
-                //   height: 120,
-                //   width: double.infinity,
-                //   fit: BoxFit.cover,
-                // ),
               ),
               Positioned(
                 top: 8,
@@ -135,7 +128,7 @@ class _ProductCardState extends State<ProductCard> {
                     ],
                   ),
                   const Spacer(),
-                  CustomButtonAddCart(),
+                  CustomButtonAddCart(product: widget.product,),
                 ],
               ),
             ),

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/view_fav_card.dart';
+import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/product_card_grid%20.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
@@ -44,7 +44,7 @@ class _FavoritesPageBodyState extends State<FavoritesPageBody> {
           const CustomCateAppBar(title: 'Favorites', showRow: false),
           Skeletonizer(
               enabled: loading,
-              child: ViewFavCard(finalList: finalList)),
+              child: ProductCardGrid(finalList: finalList)),
         ],
       ),
     );
