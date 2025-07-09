@@ -108,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               width: screenWidth * 0.32,
                               height: screenHeight * 0.065,
                               text: "Sign Up",
-                              onTap: () => context.pushRoute(Dashboard()),
+                              onTap: () => context.pushRoute(DashboardRoute()),
                             ),
                           ),
                           SizedBox(height: screenHeight * 0.03),

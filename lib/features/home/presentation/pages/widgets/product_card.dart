@@ -3,6 +3,7 @@ import 'package:emptoria_app_team/core/routes/app_route.gr.dart';
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../../core/utils/custom_snack_bar.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/productModel/product_model.dart';
 import 'custom_button_add_cart.dart';
@@ -78,9 +79,20 @@ class _ProductCardState extends State<ProductCard> {
                   right: 8,
                   child: GestureDetector(
                     onTap: () {
-                      setState(() {
-                        provider.toggleFavorite(widget.product);
-                      });
+                      provider.toggleFavorite(widget.product);
+                      setState(() {});
+                      CustomSnackBar.show(
+                        context,
+                        message: provider.isExist(widget.product)
+                            ? "The product has been added to favorites"
+                            : "The product has been removed from favorites",
+                        backgroundColor: provider.isExist(widget.product)
+                            ? Colors.green
+                            : Colors.redAccent,
+                        icon: provider.isExist(widget.product)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                      );
                     },
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
@@ -92,6 +104,7 @@ class _ProductCardState extends State<ProductCard> {
                       ),
                     ),
                   ),
+
                 ),
               ],
             ),
@@ -104,7 +117,8 @@ class _ProductCardState extends State<ProductCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.product.title, style: Styles.textStyle14bold),
+                    Text(widget.product.title, style: Styles.textStyle14bold,                      maxLines: 1,
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       widget.product.description,
@@ -118,7 +132,7 @@ class _ProductCardState extends State<ProductCard> {
                     Row(
                       children: [
                         Text(
-                          widget.product.price,
+                          "${widget.product.price} L.E",
                           style: Styles.textStyle14bold,
                         ),
                         const SizedBox(width: 6),
@@ -147,7 +161,7 @@ class _ProductCardState extends State<ProductCard> {
                       ],
                     ),
                     const Spacer(),
-                    CustomButtonAddCart(product: widget.product),
+                    CustomButtonAddCart(product: widget.product, h: 40,),
                   ],
                 ),
               ),

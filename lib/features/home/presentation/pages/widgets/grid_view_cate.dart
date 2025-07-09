@@ -16,7 +16,7 @@ class GridViewCate extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 3 / 4,
-        crossAxisSpacing: 2,
+        crossAxisSpacing: 25,
         mainAxisSpacing: 0,
       ),
       itemBuilder: (context, index) {

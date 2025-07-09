@@ -32,23 +32,26 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class IconAppBar extends StatelessWidget {
-  const IconAppBar({super.key, required this.icon, });
+  const IconAppBar({super.key, required this.icon, this.onTap, });
 
   final IconData icon;
-
+final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final double h = MediaQuery.of(context).size.height;
     final double w = MediaQuery.of(context).size.width;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(50),
-      child: Container(
-        height: h * 0.05,
-        width: w * 0.11,
-        color: Color(0xffF2F2F2),
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Icon(icon, size: 30, color: Colors.black),
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: Container(
+          height: h * 0.05,
+          width: w * 0.11,
+          color: Color(0xffF2F2F2),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Icon(icon, size: 30, color: Colors.black),
+          ),
         ),
       ),
     );

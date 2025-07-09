@@ -44,11 +44,20 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             PageViewOfferCard(),
             CustomSections(),
             RowTextandView(text1: 'RECOMMENDED', text2: 'FOR YOU'),
-            ListViewProductCard(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: ListViewProductCard(),
+            ),
             RowTextandView(text1: 'Electronics', text2: 'FOR YOU'),
             GridViewCate(),
             RowTextandView(text1: 'BEST', text2: 'SELLERS'),
-            ListViewProductCard(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: ListViewProductCard(),
+            ),
+            SizedBox(
+              height: 67,
+            )
           ],
         ),
       ),

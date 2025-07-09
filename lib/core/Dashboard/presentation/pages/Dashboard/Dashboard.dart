@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import '../../../../constants/constants.dart';
 
 @RoutePage()
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
-
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key, this.i});
+final int? i;
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardScreenState extends State<DashboardScreen> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 0;
 
@@ -25,7 +25,13 @@ class _DashboardState extends State<Dashboard> {
     const CartPage(),
     const ProfilePage(),
   ];
-
+  @override
+  void initState() {
+    super.initState();
+    if (widget.i != null) {
+      index = widget.i!;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final items = [

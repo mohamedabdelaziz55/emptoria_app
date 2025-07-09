@@ -16,8 +16,8 @@ class ListViewProductCard extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(
-              left: index == 0 ? 16 : 8,
-              right: index == 5 ? 16 : 0,
+              // left: index == 0 ? 16 : 8,
+              // right: index == 5 ? 16 : 0,
             ),
             child:  ProductCard(product: dummyData[index],),
           );

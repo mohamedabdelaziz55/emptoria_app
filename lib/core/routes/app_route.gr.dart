@@ -39,6 +39,7 @@ import 'package:emptoria_app_team/features/splash/presentstion/pages/on_boarding
     as _i8;
 import 'package:emptoria_app_team/features/splash/presentstion/pages/splash_screen.dart'
     as _i13;
+import 'package:flutter/cupertino.dart' as _i18;
 import 'package:flutter/material.dart' as _i15;
 
 /// generated route for
@@ -128,19 +129,49 @@ class CategoriesRouteArgs {
 }
 
 /// generated route for
-/// [_i3.Dashboard]
-class Dashboard extends _i14.PageRouteInfo<void> {
-  const Dashboard({List<_i14.PageRouteInfo>? children})
-    : super(Dashboard.name, initialChildren: children);
+/// [_i3.DashboardScreen]
+class DashboardRoute extends _i14.PageRouteInfo<DashboardRouteArgs> {
+  DashboardRoute({_i15.Key? key, int? i, List<_i14.PageRouteInfo>? children})
+    : super(
+        DashboardRoute.name,
+        args: DashboardRouteArgs(key: key, i: i),
+        initialChildren: children,
+      );
 
-  static const String name = 'Dashboard';
+  static const String name = 'DashboardRoute';
 
   static _i14.PageInfo page = _i14.PageInfo(
     name,
     builder: (data) {
-      return const _i3.Dashboard();
+      final args = data.argsAs<DashboardRouteArgs>(
+        orElse: () => const DashboardRouteArgs(),
+      );
+      return _i3.DashboardScreen(key: args.key, i: args.i);
     },
   );
+}
+
+class DashboardRouteArgs {
+  const DashboardRouteArgs({this.key, this.i});
+
+  final _i15.Key? key;
+
+  final int? i;
+
+  @override
+  String toString() {
+    return 'DashboardRouteArgs{key: $key, i: $i}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DashboardRouteArgs) return false;
+    return key == other.key && i == other.i;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ i.hashCode;
 }
 
 /// generated route for
@@ -227,7 +258,7 @@ class OnboardingRoute extends _i14.PageRouteInfo<void> {
 /// [_i9.ProductDetailsScreen]
 class ProductDetailsRoute extends _i14.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
-    _i15.Key? key,
+    _i18.Key? key,
     required _i16.ProductModel product,
     List<_i14.PageRouteInfo>? children,
   }) : super(
@@ -250,7 +281,7 @@ class ProductDetailsRoute extends _i14.PageRouteInfo<ProductDetailsRouteArgs> {
 class ProductDetailsRouteArgs {
   const ProductDetailsRouteArgs({this.key, required this.product});
 
-  final _i15.Key? key;
+  final _i18.Key? key;
 
   final _i16.ProductModel product;
 
