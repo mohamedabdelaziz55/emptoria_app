@@ -1,35 +1,46 @@
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
-import 'package:emptoria_app_team/routes/app_route.dart';
-import 'package:emptoria_app_team/themes/app_theme.dart';
-import 'package:emptoria_app_team/view/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'core/routes/app_route.dart';
+import 'features/cart/presentation/data/cart_provider/cart_provider.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp( MyApp());
+  final favoriteProvider = FavoriteProvider();
+  await favoriteProvider.loadFavoritesFromPrefs();
+
+  final cartProvider = CartProvider();
+  await cartProvider.loadCartFromPrefs();
+
+  runApp(
+    MyApp(
+      favoriteProvider: favoriteProvider,
+      cartProvider: cartProvider,
+    ),
+  );
 }
-//test
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  final FavoriteProvider favoriteProvider;
+  final CartProvider cartProvider;
+
+  MyApp({super.key, required this.favoriteProvider, required this.cartProvider});
+
   final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>FavoriteProvider())
+        ChangeNotifierProvider.value(value: favoriteProvider),
+        ChangeNotifierProvider.value(value: cartProvider),
       ],
       child: MaterialApp.router(
-
+        theme: ThemeData(iconTheme: IconThemeData(color: Colors.grey)),
         routerConfig: _appRouter.config(),
         debugShowCheckedModeBanner: false,
-
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.light,
-
       ),
     );
   }
 }
+

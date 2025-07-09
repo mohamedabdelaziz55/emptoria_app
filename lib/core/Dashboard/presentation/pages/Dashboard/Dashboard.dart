@@ -1,40 +1,46 @@
 import 'package:auto_route/annotations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:emptoria_app_team/features/cart/presentation/pages/CartPage/cart_page.dart';
+import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/favorites_page.dart';
+import 'package:emptoria_app_team/features/home/presentation/pages/home_page/home_page.dart';
+import 'package:emptoria_app_team/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
-import '../../../../../features/favorites/presentation/pages/favorites_page/favorites_page.dart';
-import '../../../../../features/home/presentation/pages/home_page/home_page.dart';
-import '../../../../../features/home/presentation/pages/widgets/home_view_body.dart';
 import '../../../../constants/constants.dart';
 
 @RoutePage()
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
-
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key, this.i});
+final int? i;
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardScreenState extends State<DashboardScreen> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 0;
 
   final screens = [
     const HomePage(),
-    const ScerchPage(),
     const FavoritesPage(),
-    const CartPAge(),
-    const ProfilePage()
+    const CartPage(),
+    const ProfilePage(),
   ];
-
+  @override
+  void initState() {
+    super.initState();
+    if (widget.i != null) {
+      index = widget.i!;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final items = [
       Icon(Icons.home_outlined, size: 30, color: index == 0 ? Colors.white : Colors.grey),
-      Icon(Icons.search, size: 30, color: index == 1 ? Colors.white : Colors.grey),
-      Icon(Icons.favorite_border, size: 30, color: index == 2 ? Colors.white : Colors.grey),
-      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 3 ? Colors.white : Colors.grey),
-      Icon(Icons.person, size: 30, color: index == 4 ? Colors.white : Colors.grey),
+      Icon(Icons.favorite_border, size: 30, color: index == 1 ? Colors.white : Colors.grey),
+      Icon(Icons.shopping_cart_outlined, size: 30, color: index == 2 ? Colors.white : Colors.grey),
+      Icon(Icons.person, size: 30, color: index == 3 ? Colors.white : Colors.grey),
     ];
+
 
     return SafeArea(
       top: false,

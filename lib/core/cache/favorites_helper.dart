@@ -1,0 +1,37 @@
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../features/home/data/models/productModel/product_model.dart';
+
+class FavoritesHelper {
+  static const String _key = 'favorites';
+
+  static Future<void> saveFavorite(ProductModel product) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> current = prefs.getStringList(_key) ?? [];
+    if (!current.any((item) => jsonDecode(item)['id'] == product.id)) {
+      current.add(jsonEncode(product.toJson()));
+      await prefs.setStringList(_key, current);
+    }
+  }
+
+  static Future<void> removeFavorite(String productId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> current = prefs.getStringList(_key) ?? [];
+
+    current.removeWhere((item) => jsonDecode(item)['id'] == productId);
+    await prefs.setStringList(_key, current);
+  }
+
+  static Future<List<ProductModel>> getFavorites() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> saved = prefs.getStringList(_key) ?? [];
+    return saved.map((e) => ProductModel.fromJson(jsonDecode(e))).toList();
+  }
+
+  static Future<bool> isFavorite(String productId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> saved = prefs.getStringList(_key) ?? [];
+    return saved.any((item) => jsonDecode(item)['id'] == productId);
+  }
+}

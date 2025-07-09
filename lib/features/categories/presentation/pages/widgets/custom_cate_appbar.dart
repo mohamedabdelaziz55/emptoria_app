@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/core/constants/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/styles.dart';
+import '../../../../../core/routes/app_route.gr.dart';
+import '../../../../../core/utils/styles.dart';
 import '../../../../home/presentation/pages/widgets/custom_app_bar.dart';
 
 class CustomCateAppBar extends StatelessWidget {
@@ -42,7 +45,9 @@ final bool showRow;
           children: [
             IconButton(onPressed: onPressed, icon: Icon(icon)),
             Text(title, style: Styles.textStyle24bold),
-           showRow==true? IconAppBar(image: cardImage):Text(''),
+           showRow==true? IconAppBar(onTap: (){
+             context.pushRoute(DashboardRoute(i: 2));
+           },icon: Icons.shopping_cart_outlined):Text('             '),
           ],
         ),
       ),
