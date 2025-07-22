@@ -1,50 +1,47 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../home/data/models/productModel/product_model.dart';
 
-class FavoriteProvider extends ChangeNotifier {
-  final List<String> _favorites = [];
+final favoriteProvider =
+StateNotifierProvider<FavoriteNotifier, List<String>>(
+      (ref) => FavoriteNotifier(),
+);
 
-  List<String> get favorites => _favorites;
+class FavoriteNotifier extends StateNotifier<List<String>> {
+  FavoriteNotifier() : super([]) {
+    loadFavoritesFromPrefs();
+  }
 
-  void toggleFavorite(ProductModel product) {
-    if (_favorites.contains(product.id)) {
-      _favorites.remove(product.id);
+  Future<void> toggleFavorite(ProductModel product) async {
+    final id = product.id;
+    if (state.contains(id)) {
+      state = [...state]..remove(id);
     } else {
-      _favorites.add(product.id);
+      state = [...state, id];
     }
-    _saveFavoritesToPrefs();
-    notifyListeners();
+    await _saveFavoritesToPrefs();
   }
 
   bool isExist(ProductModel product) {
-    return _favorites.contains(product.id);
-  }
-
-  static FavoriteProvider of(BuildContext context, {bool listen = true}) {
-    return Provider.of<FavoriteProvider>(context, listen: listen);
+    return state.contains(product.id);
   }
 
   Future<void> loadFavoritesFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final storedFavorites = prefs.getStringList('favorites_ids');
     if (storedFavorites != null) {
-      _favorites.clear();
-      _favorites.addAll(storedFavorites);
-      notifyListeners();
+      state = storedFavorites;
     }
   }
 
   Future<void> _saveFavoritesToPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('favorites_ids', _favorites);
+    await prefs.setStringList('favorites_ids', state);
   }
 
   Future<void> clearFavorites() async {
-    _favorites.clear();
+    state = [];
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('favorites_ids');
-    notifyListeners();
   }
 }

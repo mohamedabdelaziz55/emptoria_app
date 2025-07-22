@@ -1,52 +1,45 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../home/data/models/productModel/product_model.dart';
 
-class CartProvider extends ChangeNotifier {
-  final List<String> _cartItems = [];
+final cartProvider =
+StateNotifierProvider<CartNotifier, List<String>>((ref) => CartNotifier());
 
-  List<String> get cart=> _cartItems;
+class CartNotifier extends StateNotifier<List<String>> {
+  CartNotifier() : super([]) {
+    loadCartFromPrefs();
+  }
 
-  void toggleCart(ProductModel product) {
-    if (_cartItems.contains(product.id)) {
-      _cartItems.remove(product.id);
+  Future<void> toggleCart(ProductModel product) async {
+    final id = product.id;
+    if (state.contains(id)) {
+      state = [...state]..remove(id);
     } else {
-      _cartItems.add(product.id);
+      state = [...state, id];
     }
-    _saveCartToPrefs();
-    notifyListeners();
+    await _saveCartToPrefs();
   }
 
   bool isExist(ProductModel product) {
-    return _cartItems.contains(product.id);
+    return state.contains(product.id);
   }
 
   Future<void> loadCartFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final stored = prefs.getStringList('cart_ids');
     if (stored != null) {
-      _cartItems.clear();
-      _cartItems.addAll(stored);
-      notifyListeners();
+      state = stored;
     }
   }
 
   Future<void> _saveCartToPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('cart_ids', _cartItems);
+    await prefs.setStringList('cart_ids', state);
   }
 
   Future<void> clearCart() async {
-    _cartItems.clear();
+    state = [];
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('cart_ids');
-    notifyListeners();
-  }
-
-  static CartProvider of(BuildContext context, {bool listen = true}) {
-    return Provider.of<CartProvider>(context, listen: listen);
   }
 }
-

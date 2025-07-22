@@ -1,30 +1,30 @@
 import 'dart:async';
-import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/product_card_grid%20.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/no_favorites.dart';
+
+import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/product_card_grid%20.dart';
 import '../../../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import '../../../../../home/data/data/dummy_data.dart';
 import '../../../../../home/data/models/productModel/product_model.dart';
+import '../no_favorites.dart';
 
-class FavoritesPageBody extends StatefulWidget {
+class FavoritesPageBody extends ConsumerStatefulWidget {
   const FavoritesPageBody({super.key});
 
   @override
-  State<FavoritesPageBody> createState() => _FavoritesPageBodyState();
+  ConsumerState<FavoritesPageBody> createState() => _FavoritesPageBodyState();
 }
 
-class _FavoritesPageBodyState extends State<FavoritesPageBody> {
+class _FavoritesPageBodyState extends ConsumerState<FavoritesPageBody> {
   bool loading = true;
 
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FavoriteProvider.of(context, listen: false).loadFavoritesFromPrefs();
-    });
+    // تحميل المفضلات (يتم تحميلها تلقائيًا داخل الكونستركتر في النوتيفاير)
 
     Timer(const Duration(seconds: 3), () {
       setState(() {
@@ -35,9 +35,11 @@ class _FavoritesPageBodyState extends State<FavoritesPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = FavoriteProvider.of(context);
-    final List<ProductModel> finalList = provider.favorites
+    final favorites = ref.watch(favoriteProvider);
+
+    final List<ProductModel> finalList = favorites
         .map((id) => getProductById(id))
+        .whereType<ProductModel>()
         .toList();
 
     return finalList.isNotEmpty
@@ -55,7 +57,11 @@ class _FavoritesPageBodyState extends State<FavoritesPageBody> {
         : const NoFavorites();
   }
 
-  ProductModel getProductById(String id) {
-    return dummyData.firstWhere((product) => product.id == id);
+  ProductModel? getProductById(String id) {
+    try {
+      return dummyData.firstWhere((product) => product.id == id);
+    } catch (e) {
+      return null;
+    }
   }
 }

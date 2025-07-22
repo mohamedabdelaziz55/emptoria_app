@@ -2,28 +2,29 @@ import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/core/routes/app_route.gr.dart';
 import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../../core/utils/custom_snack_bar.dart';
 import '../../../../../core/utils/styles.dart';
+
 import '../../../data/models/productModel/product_model.dart';
 import 'custom_button_add_cart.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends ConsumerWidget {
   const ProductCard({super.key, required this.product});
 
   final ProductModel product;
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favorites = ref.watch(favoriteProvider);
+    final favoritesNotifier = ref.read(favoriteProvider.notifier);
 
-class _ProductCardState extends State<ProductCard> {
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
+    final isFavorite = favorites.contains(product.id);
+
     return GestureDetector(
       onTap: () {
-        context.pushRoute(ProductDetailsRoute(product: widget.product));
+        context.pushRoute(ProductDetailsRoute(product: product));
       },
       child: Container(
         width: 180,
@@ -50,7 +51,7 @@ class _ProductCardState extends State<ProductCard> {
                     topRight: Radius.circular(16),
                   ),
                   child: Image(
-                    image: NetworkImage(widget.product.image),
+                    image: NetworkImage(product.image),
                     width: double.infinity,
                     height: 120,
                     fit: BoxFit.cover,
@@ -78,18 +79,19 @@ class _ProductCardState extends State<ProductCard> {
                   top: 8,
                   right: 8,
                   child: GestureDetector(
-                    onTap: () {
-                      provider.toggleFavorite(widget.product);
-                      setState(() {});
+                    onTap: () async {
+                      await favoritesNotifier.toggleFavorite(product);
+
+                      final nowFavorite = favoritesNotifier.isExist(product);
+
                       CustomSnackBar.show(
                         context,
-                        message: provider.isExist(widget.product)
+                        message: nowFavorite
                             ? "The product has been added to favorites"
                             : "The product has been removed from favorites",
-                        backgroundColor: provider.isExist(widget.product)
-                            ? Colors.green
-                            : Colors.redAccent,
-                        icon: provider.isExist(widget.product)
+                        backgroundColor:
+                        nowFavorite ? Colors.green : Colors.redAccent,
+                        icon: nowFavorite
                             ? Icons.favorite
                             : Icons.favorite_border,
                       );
@@ -97,14 +99,13 @@ class _ProductCardState extends State<ProductCard> {
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Icon(
-                        provider.isExist(widget.product)
+                        isFavorite
                             ? Icons.favorite
                             : Icons.favorite_border,
                         color: Colors.red,
                       ),
                     ),
                   ),
-
                 ),
               ],
             ),
@@ -117,11 +118,14 @@ class _ProductCardState extends State<ProductCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.product.title, style: Styles.textStyle14bold,                      maxLines: 1,
+                    Text(
+                      product.title,
+                      style: Styles.textStyle14bold,
+                      maxLines: 1,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      widget.product.description,
+                      product.description,
                       style: Styles.textStyle12.copyWith(
                         color: Colors.grey[600],
                       ),
@@ -132,12 +136,12 @@ class _ProductCardState extends State<ProductCard> {
                     Row(
                       children: [
                         Text(
-                          "${widget.product.price} L.E",
+                          "${product.price} L.E",
                           style: Styles.textStyle14bold,
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          widget.product.oldPrice,
+                          product.oldPrice,
                           style: const TextStyle(
                             decoration: TextDecoration.lineThrough,
                             color: Colors.grey,
@@ -149,11 +153,11 @@ class _ProductCardState extends State<ProductCard> {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        Text(widget.product.rating, style: Styles.textStyle12),
+                        Text(product.rating, style: Styles.textStyle12),
                         const Icon(Icons.star, color: Colors.amber, size: 14),
                         const SizedBox(width: 4),
                         Text(
-                          widget.product.reviewCount,
+                          product.reviewCount,
                           style: Styles.textStyle12.copyWith(
                             color: Colors.grey[600],
                           ),
@@ -161,7 +165,7 @@ class _ProductCardState extends State<ProductCard> {
                       ],
                     ),
                     const Spacer(),
-                    CustomButtonAddCart(product: widget.product, h: 40,),
+                    CustomButtonAddCart(product: product, h: 40),
                   ],
                 ),
               ),
