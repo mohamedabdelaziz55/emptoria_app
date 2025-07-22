@@ -1,8 +1,7 @@
-import 'package:emptoria_app_team/features/cart/presentation/data/cart_provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../../core/utils/custom_snack_bar.dart';
+import '../../../../cart/presentation/river_pod/cart_river_pod.dart';
 import '../../../data/models/productModel/product_model.dart';
 
 class CustomButtonAddCart extends ConsumerWidget {
@@ -34,7 +33,7 @@ class CustomButtonAddCart extends ConsumerWidget {
             message: nowInCart
                 ? "Product added to cart"
                 : "Product removed from cart",
-            backgroundColor: nowInCart ? Colors.green : Colors.redAccent,
+            backgroundColor:  Colors.white,
             icon: Icons.shopping_cart_outlined,
           );
         },

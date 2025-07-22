@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../home/data/models/productModel/product_model.dart';
+import '../../home/data/models/productModel/product_model.dart';
 
 final favoriteProvider =
 StateNotifierProvider<FavoriteNotifier, List<String>>(

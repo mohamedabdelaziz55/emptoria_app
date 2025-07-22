@@ -5,9 +5,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/product_card_grid%20.dart';
 import '../../../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
-import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import '../../../../../home/data/data/dummy_data.dart';
 import '../../../../../home/data/models/productModel/product_model.dart';
+import '../../../../river_pod/favorite_river_pod.dart';
 import '../no_favorites.dart';
 
 class FavoritesPageBody extends ConsumerStatefulWidget {
@@ -23,8 +23,6 @@ class _FavoritesPageBodyState extends ConsumerState<FavoritesPageBody> {
   @override
   void initState() {
     super.initState();
-
-    // تحميل المفضلات (يتم تحميلها تلقائيًا داخل الكونستركتر في النوتيفاير)
 
     Timer(const Duration(seconds: 3), () {
       setState(() {

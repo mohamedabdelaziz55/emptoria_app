@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/core/routes/app_route.gr.dart';
-import 'package:emptoria_app_team/features/favorites/date/Provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/utils/custom_snack_bar.dart';
 import '../../../../../core/utils/styles.dart';
 
+import '../../../../favorites/river_pod/favorite_river_pod.dart';
 import '../../../data/models/productModel/product_model.dart';
 import 'custom_button_add_cart.dart';
 
@@ -89,8 +89,7 @@ class ProductCard extends ConsumerWidget {
                         message: nowFavorite
                             ? "The product has been added to favorites"
                             : "The product has been removed from favorites",
-                        backgroundColor:
-                        nowFavorite ? Colors.green : Colors.redAccent,
+                        backgroundColor: Colors.white,
                         icon: nowFavorite
                             ? Icons.favorite
                             : Icons.favorite_border,

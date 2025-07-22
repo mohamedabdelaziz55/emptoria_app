@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../core/routes/app_route.gr.dart';
 import '../../../../../home/data/models/productModel/product_model.dart';
 import '../../../../../home/presentation/pages/widgets/custom_button_add_cart.dart';
-import '../../../../date/Provider/favorite_provider.dart';
+import '../../../../river_pod/favorite_river_pod.dart';
 
 class ProductCardGrid extends ConsumerWidget {
   const ProductCardGrid({super.key, required this.finalList});

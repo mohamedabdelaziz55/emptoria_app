@@ -1,4 +1,3 @@
-import 'package:emptoria_app_team/features/cart/presentation/data/cart_provider/cart_provider.dart';
 import 'package:emptoria_app_team/features/home/data/models/productModel/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
 import '../../../../../favorites/presentation/pages/favorites_page/widgets/product_card_grid .dart';
 import '../../../../../home/data/data/dummy_data.dart';
+import '../../../river_pod/cart_river_pod.dart';
 
 class CartPageView extends ConsumerStatefulWidget {
   const CartPageView({super.key});

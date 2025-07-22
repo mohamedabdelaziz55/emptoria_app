@@ -22,12 +22,12 @@ class CustomSnackBar {
           ),
           child: Row(
             children: [
-              Icon(icon, color: Colors.white),
+              Icon(icon, color: Colors.black87),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   message,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.black87),
                 ),
               ),
               GestureDetector(
