@@ -1,14 +1,15 @@
-import 'dart:async';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'package:emptoria_app_team/features/favorites/presentation/pages/favorites_page/widgets/product_card_grid%20.dart';
-import '../../../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
-import '../../../../../home/data/data/dummy_data.dart';
-import '../../../../../home/data/models/productModel/product_model.dart';
-import '../../../../river_pod/favorite_river_pod.dart';
-import '../no_favorites.dart';
+import '../../../Product Details/data/data/dummy_data.dart';
+import '../../../categories/presentation/pages/widgets/custom_cate_appbar.dart';
+import '../../../home/data/models/productModel/product_model.dart';
+import '../../river_pod/favorite_river_pod.dart';
+import '../pages/favorites_page/no_favorites.dart';
+import '../pages/favorites_page/widgets/product_card_grid .dart';
 
 class FavoritesPageBody extends ConsumerStatefulWidget {
   const FavoritesPageBody({super.key});
@@ -24,7 +25,7 @@ class _FavoritesPageBodyState extends ConsumerState<FavoritesPageBody> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         loading = false;
       });

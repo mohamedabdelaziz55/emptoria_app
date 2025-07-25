@@ -1,36 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/constants/constants.dart';
 import '../../../../../core/utils/custom_snack_bar.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../favorites/date/Provider/favorite_provider.dart';
+import '../../../../favorites/river_pod/favorite_river_pod.dart';
 import '../../../../home/data/models/productModel/product_model.dart';
 
-class CustomRowSeller extends StatefulWidget {
+class CustomRowSeller extends ConsumerWidget {
   const CustomRowSeller({super.key, required this.product});
 
   final ProductModel product;
 
   @override
-  State<CustomRowSeller> createState() => _CustomRowSellerState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favorites = ref.watch(favoriteProvider);
+    final favoriteNotifier = ref.read(favoriteProvider.notifier);
 
-class _CustomRowSellerState extends State<CustomRowSeller> {
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
+    final isFavorite = favorites.contains(product.id);
 
     return Row(
       children: [
         const SizedBox(width: 10),
-        Text("${widget.product.price} L.E", style: Styles.textStyle16bold),
+        Text("${product.price} L.E", style: Styles.textStyle16bold),
         const SizedBox(width: 10),
         Column(
           children: [
             Text("50%Off", style: Styles.textStyle12bold.copyWith(color: kPC)),
             Text(
-              widget.product.oldPrice,
+              product.oldPrice,
               style: Styles.textStyle14.copyWith(
                 color: Colors.grey,
                 decoration: TextDecoration.lineThrough,
@@ -47,30 +45,25 @@ class _CustomRowSellerState extends State<CustomRowSeller> {
             // share logic
           },
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         CircularIconButton(
-          icon: provider.isExist(widget.product)
-              ? Icons.favorite
-              : Icons.favorite_border,
-
+          icon: isFavorite ? Icons.favorite : Icons.favorite_border,
           borderColor: kPC,
           iconColor: Colors.red,
-          onPressed:   () {
-    provider.toggleFavorite(widget.product);
-    setState(() {});
-    CustomSnackBar.show(
-    context,
-    message: provider.isExist(widget.product)
-    ? "The product has been added to favorites"
-        : "The product has been removed from favorites",
-    backgroundColor: provider.isExist(widget.product)
-    ? Colors.green
-        : Colors.redAccent,
-    icon: provider.isExist(widget.product)
-    ? Icons.favorite
-        : Icons.favorite_border,
-    );
-    },
+          onPressed: () async {
+            await favoriteNotifier.toggleFavorite(product);
+
+            final nowFavorite = favoriteNotifier.isExist(product);
+
+            CustomSnackBar.show(
+              context,
+              message: nowFavorite
+                  ? "The product has been added to favorites"
+                  : "The product has been removed from favorites",
+              backgroundColor: Colors.white,
+              icon: nowFavorite ? Icons.favorite : Icons.favorite_border,
+            );
+          },
         ),
       ],
     );

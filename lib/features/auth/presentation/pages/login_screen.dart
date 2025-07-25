@@ -1,29 +1,49 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/routes/app_route.gr.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../river_pod/login_river_pod/login_river_pod.dart';
 import '../widgets/login_button.dart';
 import '../widgets/login_form_fields.dart';
 import '../widgets/login_social_buttons.dart';
 import '../widgets/login_header.dart';
 
-
 @RoutePage()
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  bool _obscurePassword = true;
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _obscurePassword = true;
+
+  Future<void> _handleLogin() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    final result = await ref.read(loginProvider.notifier).login(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    if (result == null) {
+      if (!mounted) return;
+      print("//////     $result    //////");
+      context.pushRoute(DashboardRoute());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(loginProvider);
     final media = MediaQuery.of(context);
     final isPortrait = media.orientation == Orientation.portrait;
     final screenWidth = isPortrait ? media.size.width : media.size.height;
@@ -93,7 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              onPressed: () => context.pushRoute(ForgotPasswordFlow()),
+                              onPressed: () =>
+                                  context.pushRoute(ForgotPasswordFlow()),
                               child: const Text(
                                 "FORGOT",
                                 style: TextStyle(
@@ -114,8 +135,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               image: 'assets/icons/arrow.png',
                               width: screenWidth * 0.32,
                               height: screenHeight * 0.065,
-                              text: "Login",
-                              onTap: () => context.pushRoute(DashboardRoute()),
+                              text: isLoading ? "Loading..." : "Login",
+                              onTap: isLoading ? null : _handleLogin,
                             ),
                           ),
                           SizedBox(height: screenHeight * 0.05),

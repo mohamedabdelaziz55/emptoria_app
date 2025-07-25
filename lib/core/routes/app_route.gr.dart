@@ -344,7 +344,7 @@ class SignUpRoute extends _i14.PageRouteInfo<void> {
   static _i14.PageInfo page = _i14.PageInfo(
     name,
     builder: (data) {
-      return const _i12.SignUpScreen();
+      return  _i12.SignUpScreen();
     },
   );
 }

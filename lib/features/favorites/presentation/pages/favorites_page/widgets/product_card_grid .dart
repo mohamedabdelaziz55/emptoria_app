@@ -1,31 +1,29 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/core/utils/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../../core/routes/app_route.gr.dart';
 import '../../../../../home/data/models/productModel/product_model.dart';
 import '../../../../../home/presentation/pages/widgets/custom_button_add_cart.dart';
-import '../../../../date/Provider/favorite_provider.dart';
+import '../../../../river_pod/favorite_river_pod.dart';
 
-class ProductCardGrid extends StatefulWidget {
+class ProductCardGrid extends ConsumerWidget {
   const ProductCardGrid({super.key, required this.finalList});
 
   final List<ProductModel> finalList;
 
   @override
-  State<ProductCardGrid> createState() => _ProductCardGridState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favorites = ref.watch(favoriteProvider);
+    final favoriteNotifier = ref.read(favoriteProvider.notifier);
 
-class _ProductCardGridState extends State<ProductCardGrid> {
-  @override
-  Widget build(BuildContext context) {
-    final provider = FavoriteProvider.of(context);
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: widget.finalList.length,
+        itemCount: finalList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 16,
@@ -33,7 +31,9 @@ class _ProductCardGridState extends State<ProductCardGrid> {
           childAspectRatio: 0.65,
         ),
         itemBuilder: (context, index) {
-          final item = widget.finalList[index];
+          final item = finalList[index];
+          final isFavorite = favorites.contains(item.id);
+
           return GestureDetector(
             onTap: () {
               context.pushRoute(ProductDetailsRoute(product: item));
@@ -42,7 +42,7 @@ class _ProductCardGridState extends State<ProductCardGrid> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black12,
                     blurRadius: 6,
@@ -92,22 +92,29 @@ class _ProductCardGridState extends State<ProductCardGrid> {
                         top: 8,
                         right: 10,
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            await favoriteNotifier.toggleFavorite(item);
+
+                            final nowFavorite =
+                            favoriteNotifier.isExist(item);
+
                             CustomSnackBar.show(
                               context,
-                              message:
-                                  "The product has been removed from favorites",
-                              backgroundColor: Colors.redAccent,
-                              icon: Icons.favorite_border,
+                              message: nowFavorite
+                                  ? "The product has been added to favorites"
+                                  : "The product has been removed from favorites",
+                              backgroundColor: nowFavorite
+                                  ? Colors.green
+                                  : Colors.redAccent,
+                              icon: nowFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                             );
-                            setState(() {
-                              provider.toggleFavorite(item);
-                            });
                           },
                           child: CircleAvatar(
                             backgroundColor: Colors.white,
                             child: Icon(
-                              provider.isExist(item)
+                              isFavorite
                                   ? Icons.favorite
                                   : Icons.favorite_border,
                               color: Colors.red,
@@ -176,7 +183,7 @@ class _ProductCardGridState extends State<ProductCardGrid> {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        CustomButtonAddCart(product: item, h: 40,),
+                        CustomButtonAddCart(product: item, h: 40),
                       ],
                     ),
                   ),

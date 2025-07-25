@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:emptoria_app_team/features/home/data/data/dummy_data.dart';
-import 'package:emptoria_app_team/features/home/data/models/productModel/product_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/routes/app_route.gr.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../data/models/home_model/sections_model.dart';
+import '../../../data/models/productModel/product_model.dart';
 
 class CustomSections extends StatelessWidget {
   const CustomSections({super.key});
